@@ -1,7 +1,5 @@
 Example app showing using 3-factor OAuth2 to retrieve GitHub user emails.
 
-# Quick Start
-
 #### Quick Start
 ##### Create a GitHub app
 See https://developer.github.com/guides/basics-of-authentication/
