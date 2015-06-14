@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ericdahl/spring-boot-github-oauth.svg)](https://travis-ci.org/ericdahl/spring-boot-github-oauth)
+
 Example app showing using 3-factor OAuth2 to retrieve GitHub user emails.
 
 #### Quick Start
