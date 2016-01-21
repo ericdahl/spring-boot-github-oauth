@@ -45,7 +45,7 @@ public class ApiController {
     }
 
 
-    @RequestMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(final HttpSession httpSession, final Model model) {
         final long state = RANDOM.nextLong();
 
@@ -75,11 +75,13 @@ public class ApiController {
     @ExceptionHandler
     private void handleInvalidState(final InvalidOAuthStateException e) {
         LOGGER.error("Received invalid state", e);
+        throw e;
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler
     private void handleApiException(final ApiException e) {
         LOGGER.error("Received API exception", e);
+        throw e;
     }
 }
