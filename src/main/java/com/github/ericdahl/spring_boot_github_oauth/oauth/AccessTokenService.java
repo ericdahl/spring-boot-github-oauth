@@ -36,11 +36,13 @@ public class AccessTokenService {
         final RequestEntity<AccessTokenRequest> requestEntity = new RequestEntity<>(accessTokenRequest, HttpMethod.POST, new URI("https://github.com/login/oauth/access_token"));
         final ResponseEntity<Map<String, String>> responseEntity = restTemplate.exchange(requestEntity, TYPE_REF_MAP_STRING_STRING);
 
-        if (responseEntity.getStatusCode().is4xxClientError() || responseEntity.getStatusCode().is5xxServerError()) {
+        final Map<String, String> responseBody = responseEntity.getBody();
+        if (responseEntity.getStatusCode().is4xxClientError() ||
+            responseEntity.getStatusCode().is5xxServerError() ||
+            responseBody.containsKey("error")) {
             throw new ApiException(responseEntity);
         }
 
-        final Map<String, String> responseBody = responseEntity.getBody();
 
         LOGGER.info("access_token response payload {}", responseBody);
 
